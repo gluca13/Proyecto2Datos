@@ -1,8 +1,14 @@
 class SymbolTable:
     def __init__(self):
         self._dict = {}
-        self._keysLisy = []
-        self._valuesList = []
+        self._dataTypes = ['void','int','float','string']
+        self._reservedWords = ['if', 'while', 'return']
+        #self._signs = ['(', ')', '{', '}', ',', '=', '<', '>', '+', '-', '/', '*']
+
+        dist = 'v' - 'a' % 20
+        # store the names of all entities
+        # verify if a variable has been declared
+        # determine the scope of a name
 
     def insert(self):
         pass
