@@ -48,16 +48,11 @@ class SymbolTable(object):
         if self._look_up(key):
             self._dict[key] = token
 
-    # def deleteValue(self, key):
-    #     if self.isInTable(key):
-    #         del self._dict[key]
-    #         return True
-    #     return False
-
     def printTable(self):
         for key, value in self._dict.items():
             #print(key, ' : ', end='')
             for v in value:
                 print(key, ':', v.__str__())
+        print("\n")
 
 # https://www.tutorialspoint.com/compiler_design/compiler_design_symbol_table.htm

@@ -12,4 +12,6 @@ st = s.get_symbol_table()
 
 st.printTable()
 
+print(s.get_plain_text())
+
 s.print_errors()
