@@ -1,0 +1,7 @@
+x = 40
+string funcion(x, y){
+	if (x > 0.0){
+		n = “Mayor”
+		x = x + 5
+	return n
+}

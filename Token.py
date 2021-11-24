@@ -1,3 +1,8 @@
+#  Universidad Nacional de Costa Rica
+#  II Proyecto de Estructuras de Datos
+#  Analizador Semántico
+#  Profesor: José Calvo Suárez
+#  Autores Dayana Gibellato y Gianluca Gibellato
 
 class Token(object):
     def __init__(self, type='', name='', scope=0, line=0, function=False):
@@ -5,7 +10,7 @@ class Token(object):
         self._name = name
         self._scope = scope
         self._line = line
-        self._isFunction = function
+        self._isFunction = function  # True if the token is a function, False otherwise
 
     def set_type(self, type):
         self._type = type

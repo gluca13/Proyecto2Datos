@@ -1,13 +1,12 @@
-import Token
-
+#  Universidad Nacional de Costa Rica
+#  II Proyecto de Estructuras de Datos
+#  Analizador Semántico
+#  Profesor: José Calvo Suárez
+#  Autores Dayana Gibellato y Gianluca Gibellato
 
 class SymbolTable(object):
     def __init__(self):
         self._dict = {}
-
-        # store the names of all entities
-        # verify if a variable has been declared
-        # determine the scope of a name
 
     # returns the ascii value of the first letter of the token name
     def _first_letter_name(self, token):
@@ -17,7 +16,7 @@ class SymbolTable(object):
     def _last_letter_name(self, token):
         return ord(token.get_name()[-1])
 
-    # takes first letter of token name and calculates the hash
+    # takes first and last letter of the token's name and calculates the hash
     def _hashing_function(self, token):
         return (self._first_letter_name(token) + self._last_letter_name(token)) % 20
 
@@ -28,7 +27,7 @@ class SymbolTable(object):
         else:
             self._dict[key].append(token)
 
-    def look_up(self, key):
+    def look_up(self, key):  # cheks if a token is in the table
         try:
             var = self._dict[key]
             if var:
@@ -36,7 +35,7 @@ class SymbolTable(object):
         except KeyError:
             return False
 
-    def get_token(self, token):
+    def get_token(self, token):  # return the token if exists, return None otherwise
         key = self._hashing_function(token)
         if self.look_up(key):
             for i in self._dict[key]:
@@ -50,7 +49,6 @@ class SymbolTable(object):
 
     def printTable(self):
         for key, value in self._dict.items():
-            #print(key, ' : ', end='')
             for v in value:
                 print(key, ':', v.__str__())
         print("\n")
