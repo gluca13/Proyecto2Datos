@@ -93,7 +93,7 @@ class SemanticAnalizer(object):
                         continue
 
                     # if the variable previous of the equal sign is a string and the word is not a string, it will show an error of assignment
-                    elif equalFlag and equalToken.get_type() == 'string' and not stringFlag:
+                    elif equalFlag and equalToken is not None and equalToken.get_type() == 'string' and not stringFlag:
                         self._errorList.append(
                             'Error - Line ' + str(self._actualLine) + ': \"' + equalToken.get_name() + '\" is type (' + equalToken.get_type() + '). Invalid assignment of its value')
                         errorFlag = True
@@ -110,23 +110,24 @@ class SemanticAnalizer(object):
 
                     elif stringFlag:
                         # if the stringFlag is True, it means that the word is a string, so it will verify the equalToken's type to not be a string
-                        if equalToken.get_type() == 'int' or equalToken.get_type() == 'float':
-                            self._errorList.append(
-                                'Error - Line ' + str(self._actualLine) + ': \"' + equalToken.get_name() + '\" is type (' + equalToken.get_type() + '). Invalid assignment of its value')
-                            errorFlag = True
+                        if equalToken is not None:
+                            if equalToken.get_type() == 'int' or equalToken.get_type() == 'float':
+                                self._errorList.append(
+                                    'Error - Line ' + str(self._actualLine) + ': \"' + equalToken.get_name() + '\" is type (' + equalToken.get_type() + '). Invalid assignment of its value')
+                                errorFlag = True
                         wordsCounter += 1
                         continue
 
                     else:
-                        # creates a void token to store the word, then checks if the token is stored in the symbol table
+                        # creates a token whitout type to store the word, then checks if the token is stored in the symbol table
                         token = Token.Token(
                             '', word, self._actualScope.qsize(), self._actualLine)
                         checkToken = self._symbol_table.get_token(token)
+
                         # if the token is not stored in the symbol table, it means it is not declared and will show an error
                         if checkToken is None:
                             self._errorList.append(
                                 'Error - line ' + str(self._actualLine) + ': \"' + word + '\" is not declared in this scope')
-                            errorFlag = True
 
                         else:
                             if equalFlag:
